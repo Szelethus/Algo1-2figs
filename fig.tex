@@ -8,29 +8,24 @@
 \usepackage{amsmath, amsthm,amssymb, paralist, tikz, multirow}
 \usetikzlibrary{shapes.geometric, arrows, positioning, math, calc}
 \begin{document}
-	\def\alph{\vphantom{\beta}\alpha}
-	\def\gamm{\vphantom{\beta}\gamma}
 	\begin{tikzpicture}[
 			triangle/.style = {
-				draw=red!50,
 				shape=isosceles triangle,
-				fill=red!50,
 				shape border rotate = 90
 			},
 			level 1/.style={level distance=1cm},
 			level 2/.style={sibling distance=3cm},
 			level 3/.style={sibling distance=1.5cm},
-			edge from parent/.style={draw,-latex}
+			edge from parent/.style={draw=none}
 		]
-		\tikzstyle{Node} = [
+		\tikzstyle{Node} = [ %describes the basic look of the shapes
 			text centered, 
 			draw=black, 
 			fill= gray!20
 		]
 		\tikzstyle{CircNode} = [
 			circle,
-			minimum width=7mm, 
-			minimum height=6mm,
+			minimum width=6mm,
 			Node
 		]
 		\tikzstyle{TriNode} = [
@@ -45,7 +40,7 @@
 		child {
 			node (T1) [CircNode]{T}
 			child [level distance=20mm]{
-				node (a1) [TriNode]{$\alph$}
+				node (a1) [TriNode]{$\alpha$}
 			}
 			child [level distance=13mm]{
 				node (R1) [CircNode]{R}
@@ -53,17 +48,22 @@
 					node (b1) [TriNode]{$\beta$}
 				}
 				child [level distance = 18mm] {
-					node (c1) [TriNode, minimum height=18mm]{$\gamm$}
+					node (c1) [TriNode, minimum height=18mm]{$\gamma$}
 				}
 			}
 		};
+		\draw[->, thick] (t1) -- (T1);
+		\draw[->, thick] (T1) -- (R1);
+		\draw[->, thick] (T1) -- (-1.5,-2.05);
+		\draw[->, thick] (R1) -- (0.75,-2.65);
+		\draw[->, thick] (R1) -- (2.25,-2.7);
 		\node [right = 0mm of T1] {\texttt{++}};
 		\node [right = 0mm of R1] {\texttt{+}};
 		\node [below = 0mm of a1] {$h$};
 		\node [below = 0mm of b1] {$h$};
 		\node [below = 0mm of c1] {$h+1$};
 		
-		\draw[->, thick] (3.2,-2) -- (4.2,-2);
+		\draw[->, thick] (3.2,-2) -- (4.2,-2) node [midway, above, sloped] {L};
 		
 		\node (t2)[right = 7 cm of t1] {t}
 		child {
@@ -72,16 +72,21 @@
 				node (T2) [CircNode] {T}
 				[level distance = 15mm]
 				child {
-					node (a2) [TriNode]{$\alph$}
+					node (a2) [TriNode]{$\alpha$}
 				}
 				child{
 					node (b2)[TriNode]{$\beta$}
 				}
 			}
 			child[level distance = 24.5mm] {
-				node (c2) [TriNode, minimum height=18mm] {$\gamm$}
+				node (c2) [TriNode, minimum height=18mm] {$\gamma$}
 			}
 		};
+		\draw[->, thick] (t2) -- (R2);
+		\draw[->, thick] (R2) -- (T2);
+		\draw[->, thick] (T2) -- (5.1,-2.6);
+		\draw[->, thick] (T2) -- (6.65,-2.6);
+		\draw[->, thick] (R2) -- (8.9,-2.1);
 		\node [right = 0mm of T2] {\texttt{0}};
 		\node [right = 0mm of R2] {\texttt{+}};
 		\node [below = 0mm of a2] {$h$};
