@@ -8,91 +8,97 @@
 \usepackage{amsmath, amsthm,amssymb, paralist, tikz, multirow}
 \usetikzlibrary{shapes.geometric, arrows, positioning, math, calc}
 \begin{document}
-	\begin{tikzpicture}[
-			triangle/.style = {
-				shape=isosceles triangle,
-				shape border rotate = 90
-			},
-			level 1/.style={level distance=1cm},
-			level 2/.style={sibling distance=3cm},
-			level 3/.style={sibling distance=1.5cm},
-			edge from parent/.style={draw=none}
-		]
-		\tikzstyle{Node} = [ %describes the basic look of the shapes
-			text centered, 
-			draw=black, 
-			fill= gray!20
-		]
-		\tikzstyle{CircNode} = [
-			circle,
-			minimum width=6mm,
-			Node
-		]
-		\tikzstyle{TriNode} = [
-			triangle,
-			minimum width=13mm, 
-			minimum height=13mm,
-			isosceles triangle stretches,
-			Node
-		]
-		
-		\node (t1) {t}
-		child {
-			node (T1) [CircNode]{T}
-			child [level distance=20mm]{
-				node (a1) [TriNode]{$\alpha$}
-			}
-			child [level distance=13mm]{
-				node (R1) [CircNode]{R}
-				child {
-					node (b1) [TriNode]{$\beta$}
+	\begin{figure}[!h]
+		\centering
+		\begin{tikzpicture}[
+				triangle/.style = {
+					shape=isosceles triangle,
+					shape border rotate = 90
+				},
+				level 1/.style={level distance=1cm},
+				level 2/.style={sibling distance=3cm},
+				level 3/.style={sibling distance=1.5cm},
+				edge from parent/.style={draw=none}
+			]
+			\tikzstyle{Node} = [ %describes the basic look of the shapes
+				text centered, 
+				draw=black, 
+				fill= gray!20
+			]
+			\tikzstyle{CircNode} = [
+				circle,
+				minimum width=6mm,
+				Node
+			]
+			\tikzstyle{TriNode} = [
+				triangle,
+				minimum width=13mm, 
+				minimum height=13mm,
+				isosceles triangle stretches,
+				Node
+			]
+			
+			\node (t1) {$t$}
+			child {
+				node (T1) [CircNode]{T}
+				child [level distance=20mm]{
+					node (a1) [TriNode]{$\alpha$}
 				}
-				child [level distance = 18mm] {
-					node (c1) [TriNode, minimum height=18mm]{$\gamma$}
+				child [level distance=13mm]{
+					node (R1) [CircNode]{R}
+					child {
+						node (b1) [TriNode]{$\beta$}
+					}
+					child [level distance = 18mm] {
+						node (c1) [TriNode, minimum height=18mm]{$\gamma$}
+					}
 				}
-			}
-		};
-		\draw[->, thick] (t1) -- (T1);
-		\draw[->, thick] (T1) -- (R1);
-		\draw[->, thick] (T1) -- (-1.5,-2.05);
-		\draw[->, thick] (R1) -- (0.75,-2.65);
-		\draw[->, thick] (R1) -- (2.25,-2.7);
-		\node [right = 0mm of T1] {\texttt{++}};
-		\node [right = 0mm of R1] {\texttt{+}};
-		\node [below = 0mm of a1] {$h$};
-		\node [below = 0mm of b1] {$h$};
-		\node [below = 0mm of c1] {$h+1$};
-		
-		\draw[->, thick] (3.2,-2) -- (4.2,-2) node [midway, above, sloped] {L};
-		
-		\node (t2)[right = 7 cm of t1] {t}
-		child {
-			node (R2) [CircNode]{R}
-			child{
-				node (T2) [CircNode] {T}
-				[level distance = 15mm]
-				child {
-					node (a2) [TriNode]{$\alpha$}
-				}
+			};
+			\draw[->, thick] (t1) -- (T1);
+			\draw[->, thick] (T1) -- (R1);
+			\draw[->, thick] (T1) -- (-1.5,-2.05);
+			\draw[->, thick] (R1) -- (0.75,-2.65);
+			\draw[->, thick] (R1) -- (2.25,-2.7);
+			\node [right = 0mm of T1] {\texttt{++}};
+			\node [right = 0mm of R1] {\texttt{+}};
+			\node [below = 0mm of a1] {$h$};
+			\node [below = 0mm of b1] {$h$};
+			\node [below = 0mm of c1] {$h+1$};
+			\draw[<->, thick] (-2.5, -4.5) -- node [anchor=center, left, text width= 1.5cm, text centered]{$h(t)=$\\$h+3$}(-2.5, 0.1);
+			
+			\draw[->, thick] (3.7,-2) -- (4.7,-2) node [midway, above] {L};
+			
+			\node (t2)[right = 8 cm of t1] {$t$}
+			child {
+				node (R2) [CircNode]{R}
 				child{
-					node (b2)[TriNode]{$\beta$}
+					node (T2) [CircNode] {T}
+					[level distance = 15mm]
+					child {
+						node (a2) [TriNode]{$\alpha$}
+					}
+					child{
+						node (b2)[TriNode]{$\beta$}
+					}
 				}
-			}
-			child[level distance = 24.5mm] {
-				node (c2) [TriNode, minimum height=18mm] {$\gamma$}
-			}
-		};
-		\draw[->, thick] (t2) -- (R2);
-		\draw[->, thick] (R2) -- (T2);
-		\draw[->, thick] (T2) -- (5.1,-2.6);
-		\draw[->, thick] (T2) -- (6.65,-2.6);
-		\draw[->, thick] (R2) -- (8.9,-2.1);
-		\node [right = 0mm of T2] {\texttt{0}};
-		\node [right = 0mm of R2] {\texttt{+}};
-		\node [below = 0mm of a2] {$h$};
-		\node [below = 0mm of b2] {$h$};
-		\node [below = 0mm of c2] {$h+1$};
-	\end{tikzpicture}
+				child[level distance = 24.5mm] {
+					node (c2) [TriNode, minimum height=18mm] {$\gamma$}
+				}
+			};
+			\draw[->, thick] (t2) -- (R2);
+			\draw[->, thick] (R2) -- (T2);
+			\draw[->, thick] (T2) -- (6.1,-2.6);
+			\draw[->, thick] (T2) -- (7.65,-2.6);
+			\draw[->, thick] (R2) -- (9.9,-2.1);
+			\node [right = 0mm of T2] {\texttt{0}};
+			\node [right = 0mm of R2] {\texttt{0}};
+			\node [below = 0mm of a2] {$h$};
+			\node [below = 0mm of b2] {$h$};
+			\node [below = 0mm of c2] {$h+1$};
+			\draw[<->, thick] (11, -3.9) -- node [anchor=center, right, text width= 1.5cm, text centered]{$h(t)=$\\$h+2$}(11, 0.1);
+		\end{tikzpicture}
+		\caption{Jegyezzük meg, hogy a $h(t)$ szimbólum a $t$ fa, míg a $h$ szimbólum az $\alpha$ és $\beta$ részfák magasságát jelenti.}
+	\end{figure}
 	
 	\bigskip
 	\begin{tikzpicture}
