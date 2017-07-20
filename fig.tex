@@ -136,14 +136,14 @@
 				child [level distance=13mm]{
 					node (R1) [CircNode]{R}
 					child [level distance = 18mm] {
-						node (c1) [TriNode, minimum height=18mm]{$\gamma$}
+						node (a1) [TriNode, minimum height=18mm]{$\alpha$}
 					}
 					child {
 						node (b1) [TriNode]{$\beta$}
 					}
 				}
 				child [level distance=20mm]{
-					node (a1) [TriNode]{$\alpha$}
+					node (c1) [TriNode]{$\gamma$}
 				}
 			};
 			\draw[->, thick] (t1) -- (T1);
@@ -153,9 +153,9 @@
 			\draw[->, thick] (R1) -- (-2.25,-2.7);
 			\node [right = 0mm of T1] {\texttt{-\hspace{0mm}-}};
 			\node [right = 0mm of R1] {\texttt{-}};
-			\node [below = 0mm of a1] {$h$};
+			\node [below = 0mm of a1] {$h+1$};
+			\node [below = 0mm of c1] {$h$};
 			\node [below = 0mm of b1] {$h$};
-			\node [below = 0mm of c1] {$h+1$};
 			\draw[<->, thick] (-3.2, -4.5) -- node [anchor=center, left, text width= 1.5cm, text centered]{$h(t)=$\\$h+3$}(-3.2, 0.1);
 			
 			\draw[->, thick] (2.7,-2) -- (3.7,-2) node [midway, above] {R};
@@ -164,16 +164,16 @@
 			child {
 				node (R2) [CircNode]{R}
 				child[level distance = 24.5mm] {
-					node (c2) [TriNode, minimum height=18mm] {$\gamma$}
+					node (a2) [TriNode, minimum height=18mm]{$\alpha$}
 				}
 				child{
 					node (T2) [CircNode] {T}
 					[level distance = 15mm]
 					child {
-						node (a2) [TriNode]{$\alpha$}
+						node (b2)[TriNode]{$\beta$}
 					}
 					child{
-						node (b2)[TriNode]{$\beta$}
+						node (c2) [TriNode]{$\gamma$}
 					}
 				}
 			};
@@ -184,14 +184,13 @@
 			\draw[->, thick] (R2) -- (4.85,-2.07);
 			\node [right = 0mm of T2] {\texttt{0}};
 			\node [right = 0mm of R2] {\texttt{0}};
-			\node [below = 0mm of a2] {$h$};
+			\node [below = 0mm of a2] {$h+1$};
+			\node [below = 0mm of c2] {$h$};
 			\node [below = 0mm of b2] {$h$};
-			\node [below = 0mm of c2] {$h+1$};
 			\draw[<->, thick] (9.7, -3.9) -- node [anchor=center, right, text width= 1.5cm, text centered]{$h(t)=$\\$h+2$}(9.7, 0.1);
 		\end{tikzpicture}
 		\caption{Jegyezzük meg, hogy a $h(t)$ szimbólum a $t$ fa, míg a $h$ szimbólum az $\alpha$ és $\beta$ részfák magasságát jelenti.}
 	\end{figure}	
-
 
 	\begin{figure}[!h]
 		\centering
@@ -259,9 +258,9 @@
 			\node [below = 0mm of b1, text width= 1cm, text centered] {$h$\\$h$\\$h-1$};
 			\node [below = 0mm of c1, text width= 1cm, text centered] {$h-1$\\$h$\\$h$};
 			\node [below = 0mm of d1] {$h$};
-			\draw[<->, thick] (-2.7, -4.85) -- node [anchor=center, left, text width= 1.5cm, text centered]{$h(t)=$\\$h+4$}(-2.7, 0.1);
+%			\draw[<->, thick] (-2.7, -4.85) -- node [anchor=center, left, text width= 1.5cm, text centered]{$h(t)=$\\$h+4$}(-2.7, 0.1);
 			
-			\draw[->, thick] (3.6,-2) -- (4.6,-2) node [midway, above] {R};
+			\draw[->, thick] (3.6,-2) -- (4.6,-2) node [midway, above] {RL};
 			
 			\node (t2) [right = 7.5cm of t1] {$t$}
 			child {
@@ -301,10 +300,307 @@
 			\node [below = 0mm of b2, text width= 1cm, text centered] {$h$\\$h$\\$h-1$};
 			\node [below = 0mm of c2, text width= 1cm, text centered] {$h-1$\\$h$\\$h$};
 			\node [below = 0mm of d2] {$h$};
-			\draw[<->, thick] (11.2, -3.9) -- node [anchor=center, right, text width= 1.5cm, text centered]{$h(t)=$\\$h+2$}(11.2, 0.1);
+%			\draw[<->, thick] (11.2, -3.9) -- node [anchor=center, right, text width= 1.5cm, text centered]{$h(t)=$\\$h+2$}(11.2, 0.1);
 		\end{tikzpicture}
 		\caption{Jegyezzük meg, hogy a $h(t)$ szimbólum a $t$ fa, míg a $h$ szimbólum az $\alpha$ és $\beta$ részfák magasságát jelenti.}
 	\end{figure}	
+
+	\begin{figure}[!h]
+		\centering
+		\begin{tikzpicture}[
+				triangle/.style = {
+					shape=isosceles triangle,
+					shape border rotate = 90
+				},
+				level 1/.style={level distance=1cm},
+				level 2/.style={sibling distance=3cm},
+				level 3/.style={sibling distance=1.5cm},
+				edge from parent/.style={draw=none}
+			]
+			\tikzstyle{Node} = [ %describes the basic look of the shapes
+				text centered, 
+				draw=black, 
+				fill= gray!20
+			]
+			\tikzstyle{CircNode} = [
+				circle,
+				minimum width=6mm,
+				Node
+			]
+			\tikzstyle{TriNode} = [
+				triangle,
+				minimum width=13mm, 
+				minimum height=13mm,
+				isosceles triangle stretches,
+				Node
+			]
+			
+			\node (t1) {$t$}
+			child {
+				node (T1) [CircNode]{T}
+				child [level distance=10mm]{
+					node (L1) [CircNode]{L}
+					child [level distance = 20mm, sibling distance = 25mm] {
+						node (d1) [TriNode]{$\delta$}
+					}
+					child [level distance = 10mm] {
+						node (R1) [CircNode]{R}
+						child [level distance = 15mm] {
+							node (b1) [TriNode]{$\beta$}
+						}
+						child [level distance = 15mm]{
+							node (c1) [TriNode]{$\gamma$}
+						}
+					}
+				}
+				child [level distance=31mm]{
+					node (a1) [TriNode]{$\alpha$}
+				}
+			};
+			\draw[->, thick] (t1) -- (T1);
+			\draw[->, thick] (T1) -- (L1);
+			\draw[->, thick] (L1) -- (R1);
+			\draw[->, thick] (T1) -- (1.5,-3.15);
+			\draw[->, thick] (L1) -- (-2.75,-3.07);
+			\draw[->, thick] (R1) -- (-1.5,-3.55);
+			\draw[->, thick] (R1) -- (0,-3.55);
+			\node [right = 0mm of T1] {\texttt{++}};
+			\node [right = 0mm of L1] {\texttt{-}};
+			\node [right = 0mm of R1, text width= 1.5cm] {\texttt{-}\\ \vspace{-1.5mm}\texttt{0}\\ \vspace{-1.5mm}\texttt{+}};
+			\node [below = 0mm of a1] {$h$};
+			\node [below = 0mm of b1, text width= 1cm, text centered] {$h$\\$h$\\$h-1$};
+			\node [below = 0mm of c1, text width= 1cm, text centered] {$h-1$\\$h$\\$h$};
+			\node [below = 0mm of d1] {$h$};
+%			\draw[<->, thick] (-2.7, -4.85) -- node [anchor=center, left, text width= 1.5cm, text centered]{$h(t)=$\\$h+4$}(-2.7, 0.1);
+			
+			\draw[->, thick] (2.7,-2) -- (3.7,-2) node [midway, above] {LR};
+			
+			\node (t2) [right = 7cm of t1] {$t$}
+			child {
+				node (R2) [CircNode]{R}
+				child [level distance = 10mm] {
+					[level distance=15mm]
+					node (L2) [CircNode]{L}
+					child{
+						node (a2) [TriNode]{$\alpha$}
+					}
+					child{
+						node (b2) [TriNode]{$\beta$}
+					}
+				}
+				child {
+					[level distance=15mm]
+					node (T2) [CircNode]{T}
+					child {
+						node (c2) [TriNode]{$\gamma$}
+					}
+					child{
+						node (d2) [TriNode]{$\delta$}
+					}
+				}
+			};
+			\draw[->, thick] (t2) -- (R2);
+			\draw[->, thick] (R2) -- (T2);
+			\draw[->, thick] (R2) -- (L2);
+			\draw[->, thick] (L2) -- (5.15,-2.55);
+			\draw[->, thick] (L2) -- (6.63,-2.55);
+			\draw[->, thick] (T2) -- (8.1,-2.55);
+			\draw[->, thick] (T2) -- (9.65,-2.55);
+			\node [right = 0mm of R2] {\texttt{0}};
+			\node [left = 1mm of L2, text width= 2mm] {\texttt{0}\\ \vspace{-1.5mm}\texttt{0}\\ \vspace{-1.5mm}\texttt{-}};
+			\node [right = 1mm of T2, text width= 1.5cm] {\texttt{+}\\ \vspace{-1.5mm}\texttt{0}\\ \vspace{-1.5mm}\texttt{0}};
+			\node [below = 0mm of a2] {$h$};
+			\node [below = 0mm of b2, text width= 1cm, text centered] {$h$\\$h$\\$h-1$};
+			\node [below = 0mm of c2, text width= 1cm, text centered] {$h-1$\\$h$\\$h$};
+			\node [below = 0mm of d2] {$h$};
+%			\draw[<->, thick] (11.2, -3.9) -- node [anchor=center, right, text width= 1.5cm, text centered]{$h(t)=$\\$h+2$}(11.2, 0.1);
+		\end{tikzpicture}
+		\caption{Jegyezzük meg, hogy a $h(t)$ szimbólum a $t$ fa, míg a $h$ szimbólum az $\alpha$ és $\beta$ részfák magasságát jelenti.}
+	\end{figure}
+	\begin{figure}[!h]
+		\centering
+		\begin{tikzpicture}[
+				triangle/.style = {
+					shape=isosceles triangle,
+					shape border rotate = 90
+				},
+				level 1/.style={level distance=1cm},
+				level 2/.style={sibling distance=3cm},
+				level 3/.style={sibling distance=1.5cm},
+				edge from parent/.style={draw=none}
+			]
+			\tikzstyle{Node} = [ %describes the basic look of the shapes
+				text centered, 
+				draw=black, 
+				fill= gray!20
+			]
+			\tikzstyle{CircNode} = [
+				circle,
+				minimum width=6mm,
+				Node
+			]
+			\tikzstyle{TriNode} = [
+				triangle,
+				minimum width=13mm, 
+				minimum height=13mm,
+				isosceles triangle stretches,
+				Node
+			]
+			
+			\node (t1) {$t$}
+			child {
+				node (T1) [CircNode]{T}
+				child [level distance=20mm]{
+					node (a1) [TriNode]{$\alpha$}
+				}
+				child [level distance=13mm]{
+					node (R1) [CircNode]{R}
+					[level distance = 18mm]
+					child {
+						node (b1) [TriNode, minimum height=18mm]{$\beta$}
+					}
+					child {
+						node (c1) [TriNode, minimum height=18mm]{$\gamma$}
+					}
+				}
+			};
+			\draw[->, thick] (t1) -- (T1);
+			\draw[->, thick] (T1) -- (R1);
+			\draw[->, thick] (T1) -- (-1.5,-2.05);
+			\draw[->, thick] (R1) -- (0.75,-2.7);
+			\draw[->, thick] (R1) -- (2.25,-2.7);
+			\node [right = 0mm of T1] {\texttt{++}};
+			\node [right = 0mm of R1] {\texttt{0}};
+			\node [below = 0mm of a1] {$h$};
+			\node [below = 0mm of b1] {$h+1$};
+			\node [below = 0mm of c1] {$h+1$};
+			\draw[<->, thick] (-2.5, -4.5) -- node [anchor=center, left, text width= 1.5cm, text centered]{$h(t)=$\\$h+3$}(-2.5, 0.1);
+			
+			\draw[->, thick] (3.2,-2) -- (4.2,-2) node [midway, above] {L};
+			
+			\node (t2)[right = 7 cm of t1] {$t$}
+			child {
+				node (R2) [CircNode]{R}
+				child{
+					node (T2) [CircNode] {T}
+					child[level distance = 15mm] {
+						node (a2) [TriNode]{$\alpha$}
+					}
+					child[level distance = 19.5mm]{
+						node (b2)[TriNode, minimum height=18mm]{$\beta$}
+					}
+				}
+				child[level distance = 24.5mm] {
+					node (c2) [TriNode, minimum height=18mm] {$\gamma$}
+				}
+			};
+			\draw[->, thick] (t2) -- (R2);
+			\draw[->, thick] (R2) -- (T2);
+			\draw[->, thick] (T2) -- (5.1,-2.6);
+			\draw[->, thick] (T2) -- (6.65,-2.6);
+			\draw[->, thick] (R2) -- (8.9,-2.1);
+			\node [right = 0mm of R2] {\texttt{-}};
+			\node [right = 0mm of T2] {\texttt{+}};
+			\node [below = 0mm of a2] {$h$};
+			\node [below = 0mm of b2] {$h+1$};
+			\node [below = 0mm of c2] {$h+1$};
+			\draw[<->, thick] (10, -3.9) -- node [anchor=center, right, text width= 1.5cm, text centered]{$h(t)=$\\$h+2$}(10, 0.1);
+		\end{tikzpicture}
+		\caption{Jegyezzük meg, hogy a $h(t)$ szimbólum a $t$ fa, míg a $h$ szimbólum az $\alpha$ és $\beta$ részfák magasságát jelenti.}
+	\end{figure}
+
+	\begin{figure}[!h]
+		\centering
+		\begin{tikzpicture}[
+				triangle/.style = {
+					shape=isosceles triangle,
+					shape border rotate = 90
+				},
+				level 1/.style={level distance=1cm},
+				level 2/.style={sibling distance=3cm},
+				level 3/.style={sibling distance=1.5cm},
+				edge from parent/.style={draw=none}
+			]
+			\tikzstyle{Node} = [ %describes the basic look of the shapes
+				text centered, 
+				draw=black, 
+				fill= gray!20
+			]
+			\tikzstyle{CircNode} = [
+				circle,
+				minimum width=6mm,
+				Node
+			]
+			\tikzstyle{TriNode} = [
+				triangle,
+				minimum width=13mm, 
+				minimum height=13mm,
+				isosceles triangle stretches,
+				Node
+			]
+			
+			\node (t1) {$t$}
+			child {
+				node (T1) [CircNode]{T}
+				child [level distance=13mm]{
+					node (L1) [CircNode]{L}
+					[level distance = 18mm]
+					child  {
+						node (a1) [TriNode, minimum height=18mm]{$\alpha$}
+					}
+					child {
+						node (b1) [TriNode, minimum height=18mm]{$\beta$}
+					}
+				}
+				child [level distance=20mm]{
+					node (c1) [TriNode]{$\gamma$}
+				}
+			};
+			\draw[->, thick] (t1) -- (T1);
+			\draw[->, thick] (T1) -- (L1);
+			\draw[->, thick] (T1) -- (1.5,-2.05);
+			\draw[->, thick] (L1) -- (-0.75,-2.7);
+			\draw[->, thick] (L1) -- (-2.25,-2.7);
+			\node [right = 0mm of T1] {\texttt{-\hspace{0mm}-}};
+			\node [right = 0mm of L1] {\texttt{0}};
+			\node [below = 0mm of a1] {$h+1$};
+			\node [below = 0mm of b1] {$h+1$};
+			\node [below = 0mm of c1] {$h$};
+			\draw[<->, thick] (-3.2, -4.5) -- node [anchor=center, left, text width= 1.5cm, text centered]{$h(t)=$\\$h+3$}(-3.2, 0.1);
+			
+			\draw[->, thick] (2.7,-2) -- (3.7,-2) node [midway, above] {R};
+			
+			\node (t2)[right = 6 cm of t1] {$t$}
+			child {
+				node (L2) [CircNode]{L}
+				child[level distance = 24.5mm] {
+					node (a2) [TriNode, minimum height=18mm] {$\alpha$}
+				}
+				child{
+					node (T2) [CircNode] {T}
+					child [level distance = 19.5mm]{
+						node (b2)[TriNode, minimum height=18mm]{$\beta$}
+					}
+					child [level distance = 15mm]{
+						node (c2) [TriNode]{$\gamma$}
+					}
+				}
+			};
+			\draw[->, thick] (t2) -- (L2);
+			\draw[->, thick] (L2) -- (T2);
+			\draw[->, thick] (T2) -- (7.1,-2.6);
+			\draw[->, thick] (T2) -- (8.65,-2.6);
+			\draw[->, thick] (L2) -- (4.85,-2.07);
+			\node [right = 0mm of L2] {\texttt{+}};
+			\node [right = 0mm of T2] {\texttt{-}};
+			\node [below = 0mm of a2] {$h+1$};
+			\node [below = 0mm of b2] {$h+1$};
+			\node [below = 0mm of c2] {$h$};
+			\draw[<->, thick] (9.7, -3.9) -- node [anchor=center, right, text width= 1.5cm, text centered]{$h(t)=$\\$h+2$}(9.7, 0.1);
+		\end{tikzpicture}
+		\caption{Jegyezzük meg, hogy a $h(t)$ szimbólum a $t$ fa, míg a $h$ szimbólum az $\alpha$ és $\beta$ részfák magasságát jelenti.}
+	\end{figure}	
+	
 
 	\bigskip
 	\begin{tikzpicture}
