@@ -727,11 +727,11 @@
 		\tikzmath{
 			\x           		 = 0;   %dont touch this
 			\y           		 = 0;   %dont touch this 
-			\firstArrowL 		 = 1; %dist between L.head and the first node
+			\firstArrowL 		 = 1;   %dist between the sentinel and the first node
 			\nodeW       		 = 5;   %node width
-			\nodeH       		 = 5;   %node width
-			\nodeDist    		 = 0.8;   %distance between nodes
-			\figDist     		 = 1.2; %distance between each 
+			\nodeH       		 = 5;   %node height
+			\nodeDist    		 = 0.8; %distance in between nodes
+			\figDist     		 = 1.2; %distance in between each state of the list
 			\aboveBelowArrowDist = 0.5;
 		}
 		\tikzstyle{Node} = [
@@ -740,6 +740,10 @@
 			text centered, 
 			draw=black, 
 			fill= gray!20
+		]
+		\tikzstyle{DarkNode} = [
+			Node,
+			fill= gray!60
 		]
 		\tikzstyle{CircNode} =   [rectangle, Node]
 		\tikzstyle{EmptyNode} = [rectangle]
@@ -756,26 +760,26 @@
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%===---ZERO LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\node (firstHead0) [EmptyNode] at (\x,\y + \figDist) {\textit{L.head}};
-			\node (01l) [Node,right = \firstArrowL cm of firstHead0] {};
-			\node (01m) [Node,right = 0mm of 01l]                    {9};
-			\node (01r) [Node,right = 0mm of 01m]                    {};
+			\node (01l) [DarkNode,right = \firstArrowL cm of firstHead0] {};
+			\node (01m) [DarkNode,right = 0mm of 01l]                    {};
+			\node (01r) [DarkNode,right = 0mm of 01m]                    {};
 		\draw[->, thick] (firstHead0) -- (01l);
 		\draw[->, thick] ($(01r) + (upperArrowStart)$) -- 
 						 ($(01r) + (aboveArrow)$) -- 
-						 ($(01l) + (aboveArrow) + (-0.6,0)$) -- 
+						 ($(01l) + (aboveArrow) + (-\nodeH/10,0)$) -- 
 						 ($(01l) + (upperArrowEnd) + (-\nodeH/2/10,0)$) -- 
 						 ($(01l) + (upperArrowEnd)$);
 		\draw[->, thick] ($(01l) + (lowerArrowStart)$) -- 
 						 ($(01l) + (belowArrow)$) -- 
-						 ($(01r) + (belowArrow) + (0.6,0)$) -- 
+						 ($(01r) + (belowArrow) + (\nodeH/10,0)$) -- 
 						 ($(01r) + (lowerArrowEnd) + (\nodeH/2/10,0)$) -- 
 						 ($(01r) + (lowerArrowEnd)$);
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%===---FIRST LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\node (firstHead1) [EmptyNode] at (\x,\y) {\textit{L.head}};
-			\node (11l) [Node,right = \firstArrowL cm of firstHead1] {\texttt{/}};
-			\node (11m) [Node,right = 0mm of 11l]                    {9};
-			\node (11r) [Node,right = 0mm of 11m]                    {};
+			\node (11l) [DarkNode,right = \firstArrowL cm of firstHead1] {};
+			\node (11m) [DarkNode,right = 0mm of 11l]                    {};
+			\node (11r) [DarkNode,right = 0mm of 11m]                    {};
 		\draw[->, thick] (firstHead1) -- (11l);
 		
 			\node (12l) [Node,right = \nodeDist cm of 11r]           {};
@@ -796,23 +800,29 @@
 		\draw[->, thick] ($(13r) + (upperArrowStart)$) -- ($(14l) + (upperArrowEnd)$);
 		\draw[->, thick] ($(14l) + (lowerArrowStart)$) -- ($(13r) + (lowerArrowEnd)$);
 		
-		\draw[->, thick] ($(14r) + (upperArrowStart)$) -- 
-					 	 ($(14r) + (aboveArrow)$) -- 
-				 		 ($(11l) + (aboveArrow) + (-0.6,0)$) -- 
+			\node (15l) [Node,right = \nodeDist cm of 14r]           {};
+			\node (15m) [Node,right = 0mm of 15l]                    {16};
+			\node (15r) [Node,right = 0mm of 15m]                    {};
+		\draw[->, thick] ($(14r) + (upperArrowStart)$) -- ($(15l) + (upperArrowEnd)$);
+		\draw[->, thick] ($(15l) + (lowerArrowStart)$) -- ($(14r) + (lowerArrowEnd)$);
+		
+		\draw[->, thick] ($(15r) + (upperArrowStart)$) -- 
+					 	 ($(15r) + (aboveArrow)$) -- 
+				 		 ($(11l) + (aboveArrow) + (-\nodeH/10,0)$) -- 
 						 ($(11l) + (upperArrowEnd) + (-\nodeH/2/10,0)$) -- 
 						 ($(11l) + (upperArrowEnd)$);
 						 
 		\draw[->, thick] ($(11l) + (lowerArrowStart)$) -- 
 						 ($(11l) + (belowArrow)$) -- 
-						 ($(14r) + (belowArrow) + (0.6,0)$) -- 
-						 ($(14r) + (lowerArrowEnd) + (\nodeH/2/10,0)$) -- 
-						 ($(14r) + (lowerArrowEnd)$);
+						 ($(15r) + (belowArrow) + (\nodeH/10,0)$) -- 
+						 ($(15r) + (lowerArrowEnd) + (\nodeH/2/10,0)$) -- 
+						 ($(15r) + (lowerArrowEnd)$);
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%===---SECOND LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\node (firstHead2) [EmptyNode] at (\x,\y - \figDist) {\textit{L.head}};
-			\node (21l) [Node,right = \firstArrowL cm of firstHead2] {};
-			\node (21m) [Node,right = 0mm of 21l]                    {9};
-			\node (21r) [Node,right = 0mm of 21m]                    {};
+			\node (21l) [DarkNode,right = \firstArrowL cm of firstHead2] {};
+			\node (21m) [DarkNode,right = 0mm of 21l]                    {};
+			\node (21r) [DarkNode,right = 0mm of 21m]                    {};
 		\draw[->, thick] (firstHead2) -- (21l);
 		
 			\node (22l) [Node,right = \nodeDist cm of 21r]           {};
@@ -839,23 +849,29 @@
 		\draw[->, thick] ($(24r) + (upperArrowStart)$) -- ($(25l) + (upperArrowEnd)$);
 		\draw[->, thick] ($(25l) + (lowerArrowStart)$) -- ($(24r) + (lowerArrowEnd)$);
 		
-		\draw[->, thick] ($(25r) + (upperArrowStart)$) -- 
-						 ($(25r) + (aboveArrow)$) -- 
-						 ($(21l) + (aboveArrow) + (-0.6,0)$) -- 
+			\node (26l) [Node,right = \nodeDist cm of 25r]           {};
+			\node (26m) [Node,right = 0mm of 26l]                    {16};
+			\node (26r) [Node,right = 0mm of 26m]                    {};
+		\draw[->, thick] ($(25r) + (upperArrowStart)$) -- ($(26l) + (upperArrowEnd)$);
+		\draw[->, thick] ($(26l) + (lowerArrowStart)$) -- ($(25r) + (lowerArrowEnd)$);
+		
+		\draw[->, thick] ($(26r) + (upperArrowStart)$) -- 
+						 ($(26r) + (aboveArrow)$) -- 
+						 ($(21l) + (aboveArrow) + (-\nodeH/10,0)$) -- 
 						 ($(21l) + (upperArrowEnd) + (-\nodeH/2/10,0)$) -- 
 						 ($(21l) + (upperArrowEnd)$);
 		
 		\draw[->, thick] ($(21l) + (lowerArrowStart)$) -- 
 						 ($(21l) + (belowArrow)$) -- 
-						 ($(25r) + (belowArrow) + (0.6,0)$) -- 
-						 ($(25r) + (lowerArrowEnd) + (\nodeH/2/10,0)$) -- 
-						 ($(25r) + (lowerArrowEnd)$);
+						 ($(26r) + (belowArrow) + (\nodeH/10,0)$) -- 
+						 ($(26r) + (lowerArrowEnd) + (\nodeH/2/10,0)$) -- 
+						 ($(26r) + (lowerArrowEnd)$);
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%===---THIRD LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\node (firstHead3) [EmptyNode] at (\x,\y - 2*\figDist) {\textit{L.head}};
-			\node (31l) [Node,right = \firstArrowL cm of firstHead3] {\texttt{/}};
-			\node (31m) [Node,right = 0mm of 31l]                    {9};
-			\node (31r) [Node,right = 0mm of 31m]                    {};
+			\node (31l) [DarkNode,right = \firstArrowL cm of firstHead3] {};
+			\node (31m) [DarkNode,right = 0mm of 31l]                    {};
+			\node (31r) [DarkNode,right = 0mm of 31m]                    {};
 		\draw[->, thick] (firstHead3) -- (31l);
 		
 			\node (32l) [Node,right = \nodeDist cm of 31r]           {};
@@ -876,17 +892,23 @@
 		\draw[->, thick] ($(33r) + (upperArrowStart)$) -- ($(34l) + (upperArrowEnd)$);
 		\draw[->, thick] ($(34l) + (lowerArrowStart)$) -- ($(33r) + (lowerArrowEnd)$);
 		
-		\draw[->, thick] ($(34r) + (upperArrowStart)$) -- 
-						 ($(34r) + (aboveArrow)$) -- 
-						 ($(31l) + (aboveArrow) + (-0.6,0)$) -- 
+			\node (35l) [Node,right = \nodeDist cm of 34r]           {};
+			\node (35m) [Node,right = 0mm of 35l]                    {16};
+			\node (35r) [Node,right = 0mm of 35m]                    {};
+		\draw[->, thick] ($(34r) + (upperArrowStart)$) -- ($(35l) + (upperArrowEnd)$);
+		\draw[->, thick] ($(35l) + (lowerArrowStart)$) -- ($(34r) + (lowerArrowEnd)$);
+		
+		\draw[->, thick] ($(35r) + (upperArrowStart)$) -- 
+						 ($(35r) + (aboveArrow)$) -- 
+						 ($(31l) + (aboveArrow) + (-\nodeH/10,0)$) -- 
 						 ($(31l) + (upperArrowEnd) + (-\nodeH/2/10,0)$) -- 
 						 ($(31l) + (upperArrowEnd)$);
 		
 		\draw[->, thick] ($(31l) + (lowerArrowStart)$) -- 
 						 ($(31l) + (belowArrow)$) -- 
-						 ($(34r) + (belowArrow) + (0.6,0)$) -- 
-						 ($(34r) + (lowerArrowEnd) + (\nodeH/2/10,0)$) -- 
-						 ($(34r) + (lowerArrowEnd)$);
+						 ($(35r) + (belowArrow) + (\nodeH/10,0)$) -- 
+						 ($(35r) + (lowerArrowEnd) + (\nodeH/2/10,0)$) -- 
+						 ($(35r) + (lowerArrowEnd)$);
 		\end{tikzpicture}
 		
 		\caption{10.4}
