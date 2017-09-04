@@ -601,14 +601,107 @@
 		\caption{Jegyezzük meg, hogy a $h(t)$ szimbólum a $t$ fa, míg a $h$ szimbólum az $\alpha$ és $\beta$ részfák magasságát jelenti.}
 	\end{figure}	
 	
-
 	\begin{figure}[!h]
 		\centering
 		\begin{tikzpicture}
 		\tikzmath{
 			\x           = 0;   %dont touch this
 			\y           = 0;   %dont touch this 
-			\firstArrowL = 1.3; %dist between L.head and the first node
+			\firstArrowL = 1.3; %dist between L and the first node
+			\nodeW       = 6;   %node width
+			\nodeH       = 6;   %node width
+			\nodeDist    = 1;   %distance between nodes
+			\figDist     = 1.2; %distance between each 
+		}
+		\tikzstyle{Node} = [
+			minimum width=\nodeW mm, 
+			minimum height=\nodeH mm, 
+			text centered, 
+			draw=black, 
+			fill= gray!20
+		]
+		\tikzstyle{DarkNode} = [
+			Node,
+			fill= gray!60
+		]
+		\tikzstyle{CircNode} =   [rectangle, Node]
+		\tikzstyle{EmptyNode} = [rectangle]
+		\tikzstyle{TriNode} =   [triangle, Node]
+		
+		\coordinate (upperArrowStart) at (0            ,+0.15);
+		\coordinate (upperArrowEnd)   at (-\nodeH/2/10 ,+0.15);
+		\coordinate (lowerArrowStart) at (0            ,-0.15);
+		\coordinate (lowerArrowEnd)   at (+\nodeH/2/10 ,-0.15);
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%===---FIRST LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\node (firstHead1) [EmptyNode] at (\x,\y) {\textit{L}};
+			\node (11l) [DarkNode,right = \firstArrowL cm of firstHead1] {};
+			\node (11r) [DarkNode,right = 0mm of 11l]                    {};
+		\draw[->, thick] (firstHead1) -- (11l);
+			
+			\node (12l) [Node,right = \nodeDist cm of 11r]           {};
+			\node (12r) [Node,right = 0mm of 12l]                    {};
+		\draw[->, thick] ($(11r)$) -- (12l);
+		
+			\node (13l) [Node,right = \nodeDist cm of 12r]           {};
+			\node (13r) [Node,right = 0mm of 13l]                    {};
+		\draw[->, thick] ($(12r)$) -- (13l);
+		
+			\node (14l) [Node,right = \nodeDist cm of 13r]           {};
+			\node (14r) [Node,right = 0mm of 14l]                    {\texttt{/}};
+		\draw[->, thick] ($(13r)$) -- (14l);
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%===---SECOND LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\node (firstHead2) [EmptyNode] at (\x,\y - \figDist) {\textit{L}};
+			\node (21l) [DarkNode,right = \firstArrowL cm of firstHead2] {};
+			\node (21r) [DarkNode,right = 0mm of 21l]                    {};
+		\draw[->, thick] (firstHead2) -- (21l);
+		
+			\node (22l) [Node,right = \nodeDist cm of 21r]           {};
+			\node (22r) [Node,right = 0mm of 22l]                    {};
+		\draw[->, thick] ($(21r)$) -- (22l);
+		
+			\node (23l) [Node,right = \nodeDist cm of 22r]           {};
+			\node (23r) [Node,right = 0mm of 23l]                    {};
+		\draw[->, thick] ($(22r)$) -- (23l);
+		
+			\node (24l) [Node,right = \nodeDist cm of 23r]           {};
+			\node (24r) [Node,right = 0mm of 24l]                    {};
+		\draw[->, thick] ($(23r)$) -- (24l);
+		
+			\node (25l) [Node,right = \nodeDist cm of 24r]           {};
+			\node (25r) [Node,right = 0mm of 25l]           {\texttt{/}};
+		\draw[->, thick] ($(24r)$) -- (25l);
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%===---THIRD LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\node (firstHead3) [EmptyNode] at (\x,\y - 2*\figDist) {\textit{L}};
+			\node (31l) [DarkNode,right = \firstArrowL cm of firstHead3] {};
+			\node (31r) [DarkNode,right = 0mm of 31l]                    {};
+		\draw[->, thick] (firstHead3) -- (31l);
+		
+			\node (32l) [Node,right = \nodeDist cm of 31r]           {};
+			\node (32r) [Node,right = 0mm of 32l]                    {};
+		\draw[->, thick] ($(31r)$) -- (32l);
+		
+			\node (33l) [Node,right = \nodeDist cm of 32r]           {};
+			\node (33r) [Node,right = 0mm of 33l]                    {};
+		\draw[->, thick] ($(32r)$) -- (33l);
+		
+			\node (34l) [Node,right = \nodeDist cm of 33r]           {};
+			\node (34r) [Node,right = 0mm of 34l]                    {};
+		\draw[->, thick] ($(33r)$) -- (34l);
+		\end{tikzpicture}
+		
+		\caption{fejelemes egyszerű láncolt lista}
+	\end{figure}
+
+\begin{figure}[!h]
+		\centering
+		\begin{tikzpicture}
+		\tikzmath{
+			\x           = 0;   %dont touch this
+			\y           = 0;   %dont touch this 
+			\firstArrowL = 1.3; %dist between L and the first node
 			\nodeW       = 6;   %node width
 			\nodeH       = 6;   %node width
 			\nodeDist    = 1;   %distance between nodes
@@ -631,7 +724,96 @@
 		\coordinate (lowerArrowEnd)   at (+\nodeH/2/10 ,-0.15);
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%===---FIRST LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\node (firstHead1) [EmptyNode] at (\x,\y) {\textit{L.head}};
+		\node (firstHead1) [EmptyNode] at (\x,\y) {\textit{L}};
+			\node (11l) [Node,right = \firstArrowL cm of firstHead1] {};
+			\node (11r) [Node,right = 0mm of 11l]                    {};
+		\draw[->, thick] (firstHead1) -- (11l);
+			
+			\node (12l) [Node,right = \nodeDist cm of 11r]           {};
+			\node (12r) [Node,right = 0mm of 12l]                    {};
+		\draw[->, thick] ($(11r)$) -- (12l);
+		
+			\node (13l) [Node,right = \nodeDist cm of 12r]           {};
+			\node (13r) [Node,right = 0mm of 13l]                    {};
+		\draw[->, thick] ($(12r)$) -- (13l);
+		
+			\node (14l) [Node,right = \nodeDist cm of 13r]           {};
+			\node (14r) [Node,right = 0mm of 14l]                    {\texttt{/}};
+		\draw[->, thick] ($(13r)$) -- (14l);
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%===---SECOND LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\node (firstHead2) [EmptyNode] at (\x,\y - \figDist) {\textit{L}};
+			\node (21l) [Node,right = \firstArrowL cm of firstHead2] {};
+			\node (21r) [Node,right = 0mm of 21l]                    {};
+		\draw[->, thick] (firstHead2) -- (21l);
+		
+			\node (22l) [Node,right = \nodeDist cm of 21r]           {};
+			\node (22r) [Node,right = 0mm of 22l]                    {};
+		\draw[->, thick] ($(21r)$) -- (22l);
+		
+			\node (23l) [Node,right = \nodeDist cm of 22r]           {};
+			\node (23r) [Node,right = 0mm of 23l]                    {};
+		\draw[->, thick] ($(22r)$) -- (23l);
+		
+			\node (24l) [Node,right = \nodeDist cm of 23r]           {};
+			\node (24r) [Node,right = 0mm of 24l]                    {};
+		\draw[->, thick] ($(23r)$) -- (24l);
+		
+			\node (25l) [Node,right = \nodeDist cm of 24r]           {};
+			\node (25r) [Node,right = 0mm of 25l]           {\texttt{/}};
+		\draw[->, thick] ($(24r)$) -- (25l);
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%===---THIRD LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\node (firstHead3) [EmptyNode] at (\x,\y - 2*\figDist) {\textit{L}};
+			\node (31l) [Node,right = \firstArrowL cm of firstHead3] {};
+			\node (31r) [Node,right = 0mm of 31l]                    {};
+		\draw[->, thick] (firstHead3) -- (31l);
+		
+			\node (32l) [Node,right = \nodeDist cm of 31r]           {};
+			\node (32r) [Node,right = 0mm of 32l]                    {};
+		\draw[->, thick] ($(31r)$) -- (32l);
+		
+			\node (33l) [Node,right = \nodeDist cm of 32r]           {};
+			\node (33r) [Node,right = 0mm of 33l]                    {};
+		\draw[->, thick] ($(32r)$) -- (33l);
+		
+			\node (34l) [Node,right = \nodeDist cm of 33r]           {};
+			\node (34r) [Node,right = 0mm of 34l]                    {};
+		\draw[->, thick] ($(33r)$) -- (34l);
+		\end{tikzpicture}
+		
+		\caption{fejelem nélküli egyszerű láncolt lista}
+	\end{figure}
+	\begin{figure}[!h]
+		\centering
+		\begin{tikzpicture}
+		\tikzmath{
+			\x           = 0;   %dont touch this
+			\y           = 0;   %dont touch this 
+			\firstArrowL = 1.3; %dist between L and the first node
+			\nodeW       = 6;   %node width
+			\nodeH       = 6;   %node width
+			\nodeDist    = 1;   %distance between nodes
+			\figDist     = 1.2; %distance between each 
+		}
+		\tikzstyle{Node} = [
+			minimum width=\nodeW mm, 
+			minimum height=\nodeH mm, 
+			text centered, 
+			draw=black, 
+			fill= gray!20
+		]
+		\tikzstyle{CircNode} =   [rectangle, Node]
+		\tikzstyle{EmptyNode} = [rectangle]
+		\tikzstyle{TriNode} =   [triangle, Node]
+		
+		\coordinate (upperArrowStart) at (0            ,+0.15);
+		\coordinate (upperArrowEnd)   at (-\nodeH/2/10 ,+0.15);
+		\coordinate (lowerArrowStart) at (0            ,-0.15);
+		\coordinate (lowerArrowEnd)   at (+\nodeH/2/10 ,-0.15);
+		
+		%%%%%%%%%%%%%%%%%%%%%%%%%%===---FIRST LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\node (firstHead1) [EmptyNode] at (\x,\y) {\textit{L}};
 			\node (11l) [Node,right = \firstArrowL cm of firstHead1] {\texttt{/}};
 			\node (11m) [Node,right = 0mm of 11l]                    {9};
 			\node (11r) [Node,right = 0mm of 11m]                    {};
@@ -662,7 +844,7 @@
 		\draw[->, thick] ($(14l) + (lowerArrowStart)$) -- ($(13r) + (lowerArrowEnd)$);
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%===---SECOND LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\node (firstHead2) [EmptyNode] at (\x,\y - \figDist) {\textit{L.head}};
+		\node (firstHead2) [EmptyNode] at (\x,\y - \figDist) {\textit{L}};
 			\node (21l) [Node,right = \firstArrowL cm of firstHead2] {\texttt{/}};
 			\node (21m) [Node,right = 0mm of 21l]                    {25};
 			\node (21r) [Node,right = 0mm of 21m]                    {};
@@ -693,7 +875,7 @@
 		\draw[->, thick] ($(25l) + (lowerArrowStart)$) -- ($(24r) + (lowerArrowEnd)$);
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%===---THIRD LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\node (firstHead3) [EmptyNode] at (\x,\y - 2*\figDist) {\textit{L.head}};
+		\node (firstHead3) [EmptyNode] at (\x,\y - 2*\figDist) {\textit{L}};
 			\node (31l) [Node,right = \firstArrowL cm of firstHead3] {\texttt{/}};
 			\node (31m) [Node,right = 0mm of 31l]                    {25};
 			\node (31r) [Node,right = 0mm of 31m]                    {};
@@ -759,7 +941,7 @@
 		\coordinate (belowArrow)            at (0            ,-\aboveBelowArrowDist);
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%===---ZERO LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\node (firstHead0) [EmptyNode] at (\x,\y + \figDist) {\textit{L.head}};
+		\node (firstHead0) [EmptyNode] at (\x,\y + \figDist) {\textit{L}};
 			\node (01l) [DarkNode,right = \firstArrowL cm of firstHead0] {};
 			\node (01m) [DarkNode,right = 0mm of 01l]                    {};
 			\node (01r) [DarkNode,right = 0mm of 01m]                    {};
@@ -776,7 +958,7 @@
 						 ($(01r) + (lowerArrowEnd)$);
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%===---FIRST LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\node (firstHead1) [EmptyNode] at (\x,\y) {\textit{L.head}};
+		\node (firstHead1) [EmptyNode] at (\x,\y) {\textit{L}};
 			\node (11l) [DarkNode,right = \firstArrowL cm of firstHead1] {};
 			\node (11m) [DarkNode,right = 0mm of 11l]                    {};
 			\node (11r) [DarkNode,right = 0mm of 11m]                    {};
@@ -819,7 +1001,7 @@
 						 ($(15r) + (lowerArrowEnd)$);
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%===---SECOND LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\node (firstHead2) [EmptyNode] at (\x,\y - \figDist) {\textit{L.head}};
+		\node (firstHead2) [EmptyNode] at (\x,\y - \figDist) {\textit{L}};
 			\node (21l) [DarkNode,right = \firstArrowL cm of firstHead2] {};
 			\node (21m) [DarkNode,right = 0mm of 21l]                    {};
 			\node (21r) [DarkNode,right = 0mm of 21m]                    {};
@@ -868,7 +1050,7 @@
 						 ($(26r) + (lowerArrowEnd)$);
 		
 		%%%%%%%%%%%%%%%%%%%%%%%%%%===---THIRD LINE---===%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\node (firstHead3) [EmptyNode] at (\x,\y - 2*\figDist) {\textit{L.head}};
+		\node (firstHead3) [EmptyNode] at (\x,\y - 2*\figDist) {\textit{L}};
 			\node (31l) [DarkNode,right = \firstArrowL cm of firstHead3] {};
 			\node (31m) [DarkNode,right = 0mm of 31l]                    {};
 			\node (31r) [DarkNode,right = 0mm of 31m]                    {};
@@ -1077,7 +1259,7 @@
 		\tikzmath{
 			\x           = 0;   %dont touch this
 			\y           = 0;   %dont touch this 
-			\firstArrowL = 1;   %dist between L.head and the first node
+			\firstArrowL = 1;   %dist between L and the first node
 			\nodeW       = 6;   %node width
 			\nodeH       = 6;   %node width
 			\nodeDist    = 0.6; %distance between nodes
